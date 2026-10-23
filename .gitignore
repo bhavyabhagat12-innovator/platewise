@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment Variables (CRITICAL: Never commit .env)
+.env
+.env.local
+.env.production
+.env.development
+
+# Vercel deployment metadata
+.vercel/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+write a prompt for me to set my ai.txt

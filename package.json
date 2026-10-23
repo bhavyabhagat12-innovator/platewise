@@ -1,0 +1,21 @@
+{
+  "name": "platewise-ai",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "PlateWise - Autonomous Zero-Waste Food Agent built for PROMPT WAR 2026",
+  "main": "api/analyze.js",
+  "scripts": {
+    "start": "node -e \"console.log('Static frontend ready. Use vercel dev or any static server to preview.')\"",
+    "test": "node --test tests/**/*.test.js",
+    "lint": "node --check api/analyze.js lib/config.js lib/validation.js lib/scoring.js lib/rate-limiter.js lib/schema-validator.js lib/fallback.js"
+  },
+  "keywords": [
+    "gemini",
+    "agentic-ai",
+    "sustainability",
+    "food-waste",
+    "prompt-war-2026"
+  ],
+  "author": "PlateWise Team",
+  "license": "MIT"
+}

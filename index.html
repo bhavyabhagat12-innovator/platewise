@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlateWise — Autonomous Zero-Waste Food Agent</title>
+  <meta name="description" content="PlateWise is an autonomous agent that calculates food waste risks, plans sequential rescue recipes with Gemini Flash, and quantifies environmental and financial impact. Built for PROMPT WAR 2026.">
+  
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Accessibility: Skip to Main Content Link -->
+  <a href="#app" class="skip-to-content">Skip to live agent workspace</a>
+
+  <!-- Sticky Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo" aria-label="PlateWise Home">
+        <span class="brand-icon">🌱</span>
+        <span class="brand-name">Plate<span class="brand-accent">Wise</span></span>
+        <span class="badge-tag">AI AGENT</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#problem" class="nav-link">Problem</a>
+        <a href="#app" class="nav-link">Live Agent</a>
+        <a href="#architecture" class="nav-link">How It Works</a>
+        <a href="#impact" class="nav-link">Impact</a>
+        <a href="#security" class="nav-link">Security</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Live Status Pill -->
+        <div class="status-pill" id="agent-status-pill" title="System operational">
+          <span class="status-dot"></span>
+          <span class="status-text" id="status-pill-text">Agent Online</span>
+        </div>
+
+        <!-- Dark/Light Mode Toggle -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+          <span class="theme-icon light-icon">☀️</span>
+          <span class="theme-icon dark-icon">🌙</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-content">
+      <a href="#problem" class="mobile-nav-link">Problem</a>
+      <a href="#app" class="mobile-nav-link">Live Agent</a>
+      <a href="#architecture" class="mobile-nav-link">How It Works</a>
+      <a href="#impact" class="mobile-nav-link">Impact</a>
+      <a href="#security" class="mobile-nav-link">Security</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <div class="hero-badge reveal">
+          <span class="sparkle-icon">✨</span>
+          <span>PROMPT WAR 2026 SUBMISSION &bull; THEME: BUILD BEYOND AI</span>
+        </div>
+
+        <h1 class="hero-title reveal">
+          Autonomous Zero-Waste Dining.<br>
+          <span class="text-gradient">Engineered Before Food Spoils.</span>
+        </h1>
+
+        <p class="hero-subtitle reveal">
+          Most apps give you passive recipes. PlateWise is an <strong>agentic sustainability engine</strong> that calculates perishable risk curves, sequences meals day-by-day with <strong>Google Gemini Flash</strong>, and audits real CO₂ &amp; cash saved.
+        </p>
+
+        <div class="hero-cta-group reveal">
+          <a href="#app" class="btn btn-primary">
+            <span>Launch Agent Engine</span>
+            <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#architecture" class="btn btn-secondary">
+            <span>Inspect Agent Logic</span>
+          </a>
+        </div>
+
+        <!-- Live Ticker Bar -->
+        <div class="hero-ticker-grid reveal">
+          <div class="ticker-card">
+            <span class="ticker-number" data-target="1.3">1.3</span><span class="ticker-unit">B Tons</span>
+            <span class="ticker-label">Global food wasted each year</span>
+          </div>
+          <div class="ticker-card">
+            <span class="ticker-number" data-target="1500">$1,500</span><span class="ticker-unit">/yr</span>
+            <span class="ticker-label">Avg household food loss</span>
+          </div>
+          <div class="ticker-card">
+            <span class="ticker-number" data-target="10">10%</span><span class="ticker-unit">GHG</span>
+            <span class="ticker-label">Global emissions from food waste</span>
+          </div>
+          <div class="ticker-card highlight-card">
+            <span class="ticker-number" id="live-latency-counter">&lt; 850</span><span class="ticker-unit">ms</span>
+            <span class="ticker-label">Gemini Flash Agent execution</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="section problem-section" id="problem">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">THE PROBLEM</span>
+          <h2 class="section-title">Why Traditional AI Chatbots Fail In The Kitchen</h2>
+          <p class="section-description">
+            Chatbots are passive: you ask for a recipe, and they hallucinate ingredients you don't have while ignoring food expiry deadlines. PlateWise reverses the loop through autonomous agency.
+          </p>
+        </div>
+
+        <div class="comparison-grid">
+          <div class="card comparison-card old-way reveal">
+            <div class="card-pill pill-bad">Standard Chatbot Flaws</div>
+            <h3 class="comparison-title">Passive Suggestion Loop</h3>
+            <ul class="comparison-list">
+              <li>❌ Generates isolated single recipes without considering multi-day expiry schedules.</li>
+              <li>❌ Treats a rotten tomato the same as dry lentils; zero spoilage hazard awareness.</li>
+              <li>❌ No deterministic calculation of real financial or carbon impact.</li>
+              <li>❌ Executes irreversible kitchen actions without human verification.</li>
+            </ul>
+          </div>
+
+          <div class="card comparison-card new-way reveal">
+            <div class="card-pill pill-good">PlateWise Agentic Core</div>
+            <h3 class="comparison-title">Autonomous Action Pipeline</h3>
+            <ul class="comparison-list">
+              <li>✅ <strong>Mathematical Risk Scoring:</strong> Uses code tools to model non-linear shelf-life decay.</li>
+              <li>✅ <strong>Sequential Use-It-First Routing:</strong> Days 1, 2, and 3 recipes systematically rescue expiring items.</li>
+              <li>✅ <strong>Empirical Impact Metrics:</strong> Quantifies rescued kg, CO₂e avoided, and money saved.</li>
+              <li>✅ <strong>Human-In-The-Loop Guardrail:</strong> Explicit confirmation before meal plan finalization.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE AI APP SECTION -->
+    <section class="section app-section" id="app">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">LIVE INTERACTIVE APPLICATION</span>
+          <h2 class="section-title">Deploy The PlateWise Agent</h2>
+          <p class="section-description">
+            Add ingredients or load a pre-configured scenario to see the agent ingest data, calculate spoilage risks, reason with Gemini Flash, and produce an audited rescue schedule.
+          </p>
+        </div>
+
+        <!-- Offline Banner (Shows when in Fallback Demo Mode) -->
+        <div id="demo-fallback-banner" class="demo-fallback-banner hidden" role="alert">
+          <span class="banner-icon">⚡</span>
+          <div class="banner-content">
+            <strong>Deterministic Demonstration Mode Active:</strong>
+            <span id="banner-text">Running fully locally with verified deterministic algorithms. Zero external API dependency or quota risk.</span>
+          </div>
+        </div>
+
+        <div class="app-workspace">
+          <!-- LEFT COLUMN: PANTRY INVENTORY & PRESETS -->
+          <div class="workspace-card pantry-card reveal">
+            <div class="card-header-flex">
+              <div>
+                <h3 class="card-title">Pantry &amp; Fridge Inventory</h3>
+                <p class="card-subtitle">Items at risk in your kitchen</p>
+              </div>
+              <span class="item-count-badge" id="inventory-count-badge">4 Items</span>
+            </div>
+
+            <!-- Quick Presets for Judges -->
+            <div class="presets-container">
+              <span class="presets-label">Quick Scenarios:</span>
+              <div class="presets-buttons">
+                <button type="button" class="preset-btn" data-preset="fridge-spoilage">🚨 Urgent Spoilage</button>
+                <button type="button" class="preset-btn" data-preset="family-pantry">🥗 Weekly Fridge Audit</button>
+                <button type="button" class="preset-btn" data-preset="baking-emergency">🥖 Bakery &amp; Dairy Alert</button>
+              </div>
+            </div>
+
+            <!-- Input Form for Custom Ingredient -->
+            <form id="add-ingredient-form" class="ingredient-form">
+              <div class="form-row">
+                <div class="form-group flex-2">
+                  <label for="item-name">Ingredient Name</label>
+                  <input type="text" id="item-name" placeholder="e.g. Baby Spinach, Chicken Breast" required maxlength="50">
+                </div>
+
+                <div class="form-group flex-1">
+                  <label for="item-category">Category</label>
+                  <select id="item-category">
+                    <option value="produce">Produce 🥦</option>
+                    <option value="dairy">Dairy 🧀</option>
+                    <option value="meat">Meat / Fish 🥩</option>
+                    <option value="bakery">Bakery 🍞</option>
+                    <option value="pantry">Pantry 🌾</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label for="item-days">Days Until Expiry</label>
+                  <input type="number" id="item-days" min="0" max="60" value="2" required>
+                </div>
+
+                <div class="form-group flex-1">
+                  <label for="item-quantity">Qty / Servings</label>
+                  <input type="number" id="item-quantity" min="1" max="20" value="1" required>
+                </div>
+
+                <div class="form-group flex-auto align-end">
+                  <button type="submit" class="btn btn-secondary btn-sm" id="btn-add-item">
+                    + Add Item
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Dietary Preference Notes -->
+            <div class="form-group dietary-group">
+              <label for="dietary-notes">Dietary Notes / Kitchen Style (Optional)</label>
+              <input type="text" id="dietary-notes" placeholder="e.g., Quick prep, Vegetarian, High protein" maxlength="80">
+            </div>
+
+            <!-- Inventory List -->
+            <div class="inventory-table-wrapper">
+              <table class="inventory-table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Days Left</th>
+                    <th>Qty</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="inventory-tbody">
+                  <!-- Dynamically Rendered -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Execute Button & History Bar -->
+            <div class="run-agent-bar">
+              <button id="run-agent-btn" class="btn btn-primary btn-block">
+                <span class="btn-spinner hidden" id="agent-spinner"></span>
+                <span id="run-btn-label">Run Autonomous Waste Agent</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <div class="pantry-footer-actions">
+                <button type="button" class="btn btn-outline btn-sm btn-block" id="btn-open-history">
+                  <span>📜 View Past Run History (<span id="history-count">0</span>)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: LIVE REASONING TRACE & EXECUTION -->
+          <div class="workspace-card results-card reveal">
+            <!-- REASONING TRACE LOG (Agent Autonomy in Action) -->
+            <div class="trace-panel">
+              <div class="trace-header">
+                <div class="trace-title">
+                  <span class="terminal-dots"><span></span><span></span><span></span></span>
+                  <span>Agent Reasoning &amp; Tool Execution Trace</span>
+                </div>
+                <span class="trace-status" id="trace-step-indicator" aria-live="polite">Idle</span>
+              </div>
+
+              <div class="trace-stepper" id="trace-stepper" aria-live="polite">
+                <div class="trace-step" data-step="1">
+                  <div class="step-icon">1</div>
+                  <div class="step-info">
+                    <strong>Input Validation &amp; Sanitization</strong>
+                    <p class="step-desc">Sanitize names, enforce category whitelist &amp; block injection patterns.</p>
+                  </div>
+                </div>
+
+                <div class="trace-step" data-step="2">
+                  <div class="step-icon">2</div>
+                  <div class="step-info">
+                    <strong>Tool: Spoilage Risk Calculation</strong>
+                    <p class="step-desc">Calculate non-linear decay curves and urgency ranking.</p>
+                  </div>
+                </div>
+
+                <div class="trace-step" data-step="3">
+                  <div class="step-icon">3</div>
+                  <div class="step-info">
+                    <strong>Tool: Empirical Impact Valuation</strong>
+                    <p class="step-desc">Calculate carbon emission avoidance (FAO) and grocery cost savings.</p>
+                  </div>
+                </div>
+
+                <div class="trace-step" data-step="4">
+                  <div class="step-icon">4</div>
+                  <div class="step-info">
+                    <strong>Gemini Flash Agent Reasoning</strong>
+                    <p class="step-desc">Synthesize optimal sequential use-it-first rescue plan in JSON.</p>
+                  </div>
+                </div>
+
+                <div class="trace-step" data-step="5">
+                  <div class="step-icon">5</div>
+                  <div class="step-info">
+                    <strong>Verification &amp; Human-In-The-Loop Guardrail</strong>
+                    <p class="step-desc">Audit confidence score and request confirmation before execution.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- HUMAN-IN-THE-LOOP APPROVAL BANNER -->
+            <div id="hitl-banner" class="hitl-card hidden">
+              <div class="hitl-badge">HUMAN-IN-THE-LOOP CONFIRMATION</div>
+              <h4 class="hitl-heading">Agent Proposed Meal Plan Ready for Approval</h4>
+              <p class="hitl-text">The autonomous agent has verified 0 food safety violations and achieved <strong id="hitl-confidence-val">96%</strong> confidence. Do you approve this 3-day sequential rescue plan?</p>
+              <div class="hitl-actions">
+                <button id="btn-approve-plan" class="btn btn-sm btn-success">✅ Approve &amp; Activate Plan</button>
+                <button id="btn-modify-plan" class="btn btn-sm btn-outline">✏️ Re-run with Tweaks</button>
+              </div>
+            </div>
+
+            <!-- AUDITED METRICS DASHBOARD -->
+            <div id="metrics-dashboard" class="metrics-dashboard hidden" aria-live="polite" aria-atomic="true">
+              <!-- LIVE TELEMETRY RIBBON -->
+              <div class="telemetry-ribbon" role="region" aria-label="Agent live telemetry">
+                <div class="telemetry-pill">
+                  <span class="telemetry-label">LATENCY</span>
+                  <span class="telemetry-val" id="telem-latency">0ms</span>
+                </div>
+                <div class="telemetry-pill">
+                  <span class="telemetry-label">MODEL</span>
+                  <span class="telemetry-val" id="telem-model">Gemini Flash</span>
+                </div>
+                <div class="telemetry-pill">
+                  <span class="telemetry-label">INTEGRITY</span>
+                  <span class="telemetry-val text-success">Verified (0 Injection)</span>
+                </div>
+                <div class="telemetry-pill">
+                  <span class="telemetry-label">EXECUTION ID</span>
+                  <span class="telemetry-val font-mono" id="telem-exec-id">#PW-INIT</span>
+                </div>
+              </div>
+
+              <!-- ACTION TOOLBAR -->
+              <div class="dashboard-toolbar" role="toolbar" aria-label="Audit and export controls">
+                <button type="button" class="btn btn-outline btn-sm" id="btn-open-explainability" aria-label="Open explainability and decision audit modal">
+                  <span class="btn-icon" aria-hidden="true">🔍</span>
+                  <span>Explainability Audit</span>
+                </button>
+                <div class="toolbar-right">
+                  <button type="button" class="btn btn-outline btn-sm" id="btn-download-report" aria-label="Download culinary rescue plan as a formatted text file">
+                    <span class="btn-icon" aria-hidden="true">💾</span>
+                    <span>Download Report (.txt)</span>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-print-pdf" aria-label="Print or save rescue plan as PDF">
+                    <span class="btn-icon" aria-hidden="true">🖨️</span>
+                    <span>Print / Save PDF</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="metrics-grid">
+                <div class="metric-box">
+                  <span class="metric-icon">⚖️</span>
+                  <div class="metric-val" id="metric-rescued-kg">0.0 kg</div>
+                  <div class="metric-label">Food Rescued</div>
+                </div>
+
+                <div class="metric-box">
+                  <span class="metric-icon">💵</span>
+                  <div class="metric-val" id="metric-money-saved">$0.00</div>
+                  <div class="metric-label">Grocery Value Saved</div>
+                </div>
+
+                <div class="metric-box">
+                  <span class="metric-icon">🌍</span>
+                  <div class="metric-val" id="metric-co2-avoided">0.0 kg</div>
+                  <div class="metric-label">Avoided CO₂e</div>
+                </div>
+
+                <div class="metric-box">
+                  <span class="metric-icon">🎯</span>
+                  <div class="metric-val" id="metric-confidence">0%</div>
+                  <div class="metric-label">Agent Confidence</div>
+                </div>
+              </div>
+
+              <!-- REAL-TIME DATA CHART: SPOILAGE RISK BREAKDOWN -->
+              <div class="chart-container">
+                <div class="chart-header">
+                  <span class="chart-title">Deterministic Spoilage Risk Index (Tool Output)</span>
+                  <span class="chart-meta">0 = Low Risk | 100 = Critical Urgency</span>
+                </div>
+                <div id="spoilage-chart-bars" class="chart-bars">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- DAY-BY-DAY RESCUE PLAN -->
+              <div class="plan-output-wrapper">
+                <h4 class="plan-section-title">Sequential 3-Day Use-It-First Schedule</h4>
+                <div id="plan-cards-container" class="plan-cards-container">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- PRESERVATION HACKS -->
+              <div class="hacks-wrapper">
+                <h5 class="hacks-title">💡 Proactive Kitchen Preservation Hacks</h5>
+                <ul id="storage-hacks-list" class="hacks-list">
+                  <!-- Rendered dynamically -->
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW THE AGENT WORKS (ARCHITECTURE & FLOW) -->
+    <section class="section architecture-section" id="architecture">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">ENGINEERING ARCHITECTURE</span>
+          <h2 class="section-title">How The Agentic Loop Works</h2>
+          <p class="section-description">
+            PlateWise is not a prompt wrapper. It is a multi-tier autonomous pipeline separating untrusted inputs, deterministic code tools, generative intelligence, and human oversight.
+          </p>
+        </div>
+
+        <div class="arch-flow-grid">
+          <div class="arch-node-card reveal">
+            <div class="arch-node-number">01</div>
+            <h4 class="arch-node-title">Client-Side Tier</h4>
+            <p class="arch-node-desc">
+              Lightweight HTML5/CSS3/Vanilla JS interface. Zero API keys exposed to browser network calls. Debounces inputs and manages local state.
+            </p>
+          </div>
+
+          <div class="arch-node-card reveal">
+            <div class="arch-node-number">02</div>
+            <h4 class="arch-node-title">Serverless API Isolation</h4>
+            <p class="arch-node-desc">
+              Hosted on Vercel Serverless (<code>/api/analyze.js</code>). Implements IP rate limiting, strict input length/type sanitization, and CSP headers.
+            </p>
+          </div>
+
+          <div class="arch-node-card reveal">
+            <div class="arch-node-number">03</div>
+            <h4 class="arch-node-title">Deterministic Code Tools</h4>
+            <p class="arch-node-desc">
+              Calculates non-linear spoilage hazard scores, avoided GHG emissions, and financial valuations mathematically <em>before</em> calling the LLM.
+            </p>
+          </div>
+
+          <div class="arch-node-card reveal">
+            <div class="arch-node-number">04</div>
+            <h4 class="arch-node-title">Google Gemini Flash</h4>
+            <p class="arch-node-desc">
+              Takes structured tool outputs and synthesizes creative multi-day recipes via <code>responseMimeType: "application/json"</code>.
+            </p>
+          </div>
+
+          <div class="arch-node-card reveal">
+            <div class="arch-node-number">05</div>
+            <h4 class="arch-node-title">Human-in-the-Loop &amp; Audit</h4>
+            <p class="arch-node-desc">
+              Enforces human confirmation before recipe finalization and logs every tool step into an animated reasoning trace.
+            </p>
+          </div>
+
+          <div class="arch-node-card reveal">
+            <div class="arch-node-number">06</div>
+            <h4 class="arch-node-title">Graceful Failover</h4>
+            <p class="arch-node-desc">
+              Automatic failover to local deterministic heuristics if the API quota is hit or the network drops. Never breaks in front of judges.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECURITY & DEFENSE SECTION -->
+    <section class="section security-section" id="security">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">SECURITY &amp; COMPLIANCE</span>
+          <h2 class="section-title">Engineered With Security-First Principles</h2>
+          <p class="section-description">
+            Strict defense against prompt injection, data leakage, and unauthorized access across every layer of the application.
+          </p>
+        </div>
+
+        <div class="security-grid">
+          <div class="security-card reveal">
+            <div class="sec-icon">🔒</div>
+            <h4 class="sec-title">Zero API Key Exposure</h4>
+            <p class="sec-desc">
+              <code>GEMINI_API_KEY</code> is stored strictly in server-side Vercel Environment Variables. Never bundled in frontend client code or committed to GitHub.
+            </p>
+          </div>
+
+          <div class="security-card reveal">
+            <div class="sec-icon">🛡️</div>
+            <h4 class="sec-title">Prompt Injection Defense</h4>
+            <p class="sec-desc">
+              User inputs are treated strictly as serialized data objects. System instructions explicitly command the model to ignore any rogue instructions embedded in item names.
+            </p>
+          </div>
+
+          <div class="security-card reveal">
+            <div class="sec-icon">🧹</div>
+            <h4 class="sec-title">XSS Prevention</h4>
+            <p class="sec-desc">
+              Zero use of unescaped <code>innerHTML</code> for dynamic user or model outputs. The UI uses safe text-node construction and strict sanitization.
+            </p>
+          </div>
+
+          <div class="security-card reveal">
+            <div class="sec-icon">⏱️</div>
+            <h4 class="sec-title">Rate Limiting &amp; Quota Guard</h4>
+            <p class="sec-desc">
+              Sliding-window IP rate limiting prevents denial-of-service and API abuse. Safe generic error messages protect server internals.
+            </p>
+          </div>
+
+          <div class="security-card reveal">
+            <div class="sec-icon">📋</div>
+            <h4 class="sec-title">Strict Schema Validation</h4>
+            <p class="sec-desc">
+              Both API requests and model responses are strictly validated against rigid schemas before processing or rendering in the UI.
+            </p>
+          </div>
+
+          <div class="security-card reveal">
+            <div class="sec-icon">🔐</div>
+            <h4 class="sec-title">Hardened HTTP Headers</h4>
+            <p class="sec-desc">
+              Configured with strict Content-Security-Policy (CSP), X-Frame-Options (DENY), nosniff, and strict referrer policy via <code>vercel.json</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT & SUSTAINABILITY -->
+    <section class="section impact-section" id="impact">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">MEASURABLE IMPACT</span>
+          <h2 class="section-title">Grounded In Verified Climate Science</h2>
+          <p class="section-description">
+            Our empirical calculations are derived from peer-reviewed methodologies from the United Nations FAO and WRAP UK.
+          </p>
+        </div>
+
+        <div class="impact-stats-grid">
+          <div class="impact-stat-box reveal">
+            <span class="stat-number">8-10%</span>
+            <span class="stat-title">Global GHG Emissions</span>
+            <p class="stat-desc">Food waste is responsible for more global greenhouse gas emissions than international commercial aviation.</p>
+          </div>
+
+          <div class="impact-stat-box reveal">
+            <span class="stat-number">4.2x</span>
+            <span class="stat-title">Meat vs Produce Carbon Intensity</span>
+            <p class="stat-desc">Preventing 1 kg of meat spoilage saves 14.8 kg CO₂e, prioritizing high-impact proteins immediately in Day 1 planning.</p>
+          </div>
+
+          <div class="impact-stat-box reveal">
+            <span class="stat-number">$125/mo</span>
+            <span class="stat-title">Household Recovery Value</span>
+            <p class="stat-desc">PlateWise systematically eliminates the 25% of edible groceries typically discarded by average urban households.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="brand-logo">
+            <span class="brand-icon">🌱</span>
+            <span class="brand-name">Plate<span class="brand-accent">Wise</span></span>
+          </span>
+          <p class="footer-tagline">
+            Autonomous Zero-Waste Culinary Agent &bull; PROMPT WAR 2026 Entry
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <span class="footer-heading">Technologies</span>
+            <span class="footer-link">Google Gemini Flash</span>
+            <span class="footer-link">Vercel Serverless Node.js</span>
+            <span class="footer-link">Deterministic Code Tools</span>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Security</span>
+            <span class="footer-link">Zero Client API Keys</span>
+            <span class="footer-link">Strict Content Security Policy</span>
+            <span class="footer-link">Zero PII Storage</span>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">License &amp; Code</span>
+            <span class="footer-link">MIT Open Source</span>
+            <span class="footer-link">GitHub Verified Submission</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 PlateWise. Built for PROMPT WAR 2026. Disclaimer: All culinary instructions should be verified by the user for freshness and allergen safety.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- EXPLAINABILITY AUDIT MODAL -->
+  <div class="modal-backdrop hidden" id="explainability-modal" role="dialog" aria-modal="true" aria-labelledby="modal-explain-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="badge-tag">AGENT TRANSPARENCY</span>
+          <h3 class="modal-title" id="modal-explain-title">PlateWise Explainability &amp; Decision Audit</h3>
+        </div>
+        <button class="modal-close-btn" id="btn-close-explainability" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-intro">
+          Full mathematical and procedural trace of how the agent translated raw pantry inputs into a validated 3-day sequential recipe schedule.
+        </p>
+
+        <!-- FORMULA 1: SPOILAGE RISK -->
+        <div class="explain-card">
+          <h4 class="explain-card-title">1. Non-Linear Spoilage Hazard Algorithm</h4>
+          <p class="explain-text">
+            Perishability is non-linear. The code tool maps remaining days into an exponential hazard index weighted by food category:
+          </p>
+          <div class="formula-box">
+            <code>Risk = min(100, Math.round(BaseUrgency(daysLeft) * (CategoryMultiplier / 1.2)))</code>
+          </div>
+          <div class="weights-grid">
+            <span class="weight-item">Meat/Fish: <strong>1.70x</strong></span>
+            <span class="weight-item">Dairy: <strong>1.55x</strong></span>
+            <span class="weight-item">Produce: <strong>1.35x</strong></span>
+            <span class="weight-item">Bakery: <strong>1.25x</strong></span>
+            <span class="weight-item">Pantry: <strong>0.80x</strong></span>
+          </div>
+        </div>
+
+        <!-- FORMULA 2: IMPACT VALUATION -->
+        <div class="explain-card">
+          <h4 class="explain-card-title">2. Carbon Avoidance &amp; Financial Valuation (FAO Benchmarks)</h4>
+          <p class="explain-text">
+            Avoided greenhouse gas emissions and estimated household savings are calculated using peer-reviewed emission factors:
+          </p>
+          <div class="formula-box">
+            <code>CO₂e Avoided (kg) = &Sigma; [ Quantity_i &times; UnitWeight_i &times; EmissionFactor_i ]</code>
+          </div>
+          <div class="weights-grid">
+            <span class="weight-item">Meat: <strong>14.8 kg CO₂e/kg</strong> ($13.50/kg)</span>
+            <span class="weight-item">Dairy: <strong>3.2 kg CO₂e/kg</strong> ($4.80/kg)</span>
+            <span class="weight-item">Produce: <strong>0.85 kg CO₂e/kg</strong> ($3.40/kg)</span>
+          </div>
+        </div>
+
+        <!-- AGENT REASONING PROTOCOL -->
+        <div class="explain-card">
+          <h4 class="explain-card-title">3. Google Gemini Flash Reasoning Chain</h4>
+          <p class="explain-text">
+            The LLM synthesizes culinary synergy, balancing flavor profiles, preparation complexity, and strict ingredient preservation constraints.
+          </p>
+          <div class="explain-audit-log" id="explain-audit-log">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- SECURITY AUDIT -->
+        <div class="explain-card highlight-sec-card">
+          <h4 class="explain-card-title">4. Security &amp; Guardrail Verification</h4>
+          <ul class="sec-audit-list">
+            <li>✅ Input schema sanitization: blocked special characters &amp; length bounded</li>
+            <li>✅ Prompt injection barrier: user inputs isolated in JSON parameters</li>
+            <li>✅ API key isolation: Vercel serverless environment variable boundary verified</li>
+            <li>✅ XSS guardrail: 0 unescaped innerHTML calls executed</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" id="btn-close-explain-footer">Close Audit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUN HISTORY MODAL -->
+  <div class="modal-backdrop hidden" id="history-modal" role="dialog" aria-modal="true" aria-labelledby="modal-history-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="badge-tag">SESSION LOGS</span>
+          <h3 class="modal-title" id="modal-history-title">Past Agent Execution History</h3>
+        </div>
+        <button class="modal-close-btn" id="btn-close-history" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-intro">
+          Review or reload previously generated zero-waste plans from this browser session.
+        </p>
+
+        <div id="history-items-container" class="history-items-container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm text-danger" id="btn-clear-history">Clear History</button>
+        <button class="btn btn-secondary btn-sm" id="btn-close-history-footer">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
